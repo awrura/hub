@@ -8,6 +8,8 @@ dependencies = [
     "asgi-correlation-id>=4.3.4",
     "fastapi>=0.115.6",
     "pyaml>=25.1.0",
+    "pydantic>=2.10.5",
+    "sqlalchemy>=2.0.37",
     "uvicorn>=0.34.0",
 ]
 
