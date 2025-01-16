@@ -1,6 +1,6 @@
 from action.usecase.register import RegistrationUseCase
+from auth.model.repo.auth.base import AuthUserRepository
 from dto.register import RegisterUserDTO
-from repo.auth import AuthUserRepository
 
 
 class UserRegistrationInteractor(RegistrationUseCase):
