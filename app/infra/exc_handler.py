@@ -1,5 +1,7 @@
 from functools import partial
 
+from auth.exception.login import UserNotFoundError
+from auth.exception.login import WrongUserPasswordError
 from auth.exception.register import BaseAuthUserError
 from auth.exception.register import InvalidPasswordConfirmError
 from auth.exception.register import UserAlreadyRegisteredError
@@ -25,4 +27,10 @@ def setup_exception_handlers(app: FastAPI):
     )
     app.add_exception_handler(
         BaseAuthUserError, handler_factory(status.HTTP_500_INTERNAL_SERVER_ERROR)
+    )
+    app.add_exception_handler(
+        UserNotFoundError, handler_factory(status.HTTP_404_NOT_FOUND)
+    )
+    app.add_exception_handler(
+        WrongUserPasswordError, handler_factory(status.HTTP_400_BAD_REQUEST)
     )

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 
-class LoginUserDTO(BaseModel):
+class ToLoginUserDTO(BaseModel):
     username: str
-    password: bytes
+    password: str
