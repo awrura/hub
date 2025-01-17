@@ -1,9 +1,12 @@
-from uuid import UUID
-
 from pydantic import BaseModel
 
 
-class RegisterUserDTO(BaseModel):
-    uuid: UUID
+class ToRegisterUserDTO(BaseModel):
+    username: str
+    password: str
+    pass_confirm: str
+
+
+class StoreRegisterUserDTO(BaseModel):
     username: str
     password: bytes

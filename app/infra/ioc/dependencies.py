@@ -4,6 +4,7 @@ from dishka.integrations.fastapi import setup_dishka
 from fastapi.applications import FastAPI
 from infra.ioc.cfg import ApplicationConfigProvider
 from infra.ioc.providers.auth.repo import AuthRepoProvider
+from infra.ioc.providers.auth.usecase import RegistrationUseCaseProvider
 from infra.ioc.providers.db import SQLAlchemyProvider
 
 
@@ -15,6 +16,7 @@ def init_di(app: FastAPI) -> None:
         ApplicationConfigProvider(),
         SQLAlchemyProvider(),
         AuthRepoProvider(),
+        RegistrationUseCaseProvider(),
         context={
             DatabaseConnectConfig: DatabaseConnectConfig(
                 HOST='', PORT=1, USER='', PASS=''
