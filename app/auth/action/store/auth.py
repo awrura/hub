@@ -1,9 +1,9 @@
 from typing import Protocol
 
-from dto.register import RegisterUserDTO
+from auth.dto.register import RegisterUserDTO
 
 
-class AuthUserRepository(Protocol):
+class IAuthUserRepository(Protocol):
     async def create_user(self, user: RegisterUserDTO) -> None:
         """Создание пользователя в хранилище"""
 

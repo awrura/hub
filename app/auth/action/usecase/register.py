@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from dto.register import RegisterUserDTO
+from auth.dto.register import RegisterUserDTO
 
 
 class RegistrationUseCase(Protocol):
