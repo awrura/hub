@@ -4,12 +4,13 @@ from auth.dto.register import ToRegisterUserDTO
 from dishka.integrations.fastapi import FromDishka
 from dishka.integrations.fastapi import inject
 from fastapi import status
+from fastapi.responses import Response
 from fastapi.routing import APIRouter
 
 router = APIRouter(tags=['Auth'], prefix='/auth')
 
 
-@router.post('/register', status_code=status.HTTP_201_CREATED)
+@router.post('/register')
 @inject
 async def register(
     userinfo: RegisterUserInputSchema,
@@ -22,3 +23,5 @@ async def register(
             pass_confirm=userinfo.pass_confirm,
         )
     )
+
+    return Response(status_code=status.HTTP_201_CREATED)
