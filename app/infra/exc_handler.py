@@ -1,5 +1,6 @@
 from functools import partial
 
+from auth.exception.auth import InvalidTokenError
 from auth.exception.login import UnableRefreshTokens
 from auth.exception.login import UserNotFoundError
 from auth.exception.login import WrongUserPasswordError
@@ -37,4 +38,7 @@ def setup_exception_handlers(app: FastAPI):
     )
     app.add_exception_handler(
         UnableRefreshTokens, handler_factory(status.HTTP_400_BAD_REQUEST)
+    )
+    app.add_exception_handler(
+        InvalidTokenError, handler_factory(status.HTTP_403_FORBIDDEN)
     )
