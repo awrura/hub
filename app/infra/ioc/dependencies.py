@@ -12,6 +12,7 @@ from infra.ioc.providers.auth.usecase import LoginUseCaseProvider
 from infra.ioc.providers.auth.usecase import RefreshUseCaseProvider
 from infra.ioc.providers.auth.usecase import RegistrationUseCaseProvider
 from infra.ioc.providers.db import SQLAlchemyProvider
+from infra.ioc.providers.matrix.repo import UserMatrixRepoProvider
 
 
 def init_di(app: FastAPI) -> None:
@@ -28,6 +29,7 @@ def init_di(app: FastAPI) -> None:
         RefreshUseCaseProvider(),
         LoginUseCaseProvider(),
         LoginUserRepositoryProvider(),
+        UserMatrixRepoProvider(),
         context={
             DatabaseConnectConfig: DatabaseConnectConfig(
                 HOST='', PORT=1, USER='', PASS=''

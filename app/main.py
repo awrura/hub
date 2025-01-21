@@ -1,14 +1,12 @@
 import logging
-from typing import Annotated
 
 from auth.api.routes.auth import router as auth_router
-from auth.dto.auth import AuthUser
-from auth.util.access import authuser_from_token
+from dishka import FromDishka
 from dishka.integrations.fastapi import inject
-from fastapi import Depends
 from fastapi import FastAPI
 from infra.exc_handler import setup_exception_handlers
 from infra.ioc.dependencies import init_di
+from matrix.action.store.user_matrix import IUserMatrixRepository
 
 
 logger = logging.getLogger(__name__)
@@ -22,6 +20,7 @@ logger.info('Hello world')
 
 @app.get('/')
 @inject
-async def root(auth_user: Annotated[AuthUser, Depends(authuser_from_token)]):
-    logger.info(auth_user)
+async def root(r: FromDishka[IUserMatrixRepository]):
+    x = await r.getall()
+    logger.info(x)
     return {'message': 'Hello World'}
