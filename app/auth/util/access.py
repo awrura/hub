@@ -1,4 +1,3 @@
-from auth.dto.auth import AuthUser
 from auth.exception.auth import InvalidTokenError
 from auth.service.token import JwtTokenAuth
 from config.auth import AuthTokenSettings
@@ -7,15 +6,18 @@ from dishka.integrations.fastapi import inject
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi.security import HTTPBearer
+from user.action.store.user import IUserRepository
+from user.domain.user import User
 
 auth_scheme = HTTPBearer()
 
 
 @inject
-def authuser_from_token(
+async def user_from_token(
     token_cfg: FromDishka[AuthTokenSettings],
+    user_repo: FromDishka[IUserRepository],
     credentials: HTTPAuthorizationCredentials = Depends(auth_scheme),
-) -> AuthUser:
+) -> User:
     """
     Получить пользователя по его access token.
     В случае проеблемы декодирововки токена выкинуть исключение
@@ -29,4 +31,9 @@ def authuser_from_token(
 
     if not claims:
         raise InvalidTokenError()
-    return AuthUser(username=claims['username'])
+
+    user = await user_repo.get_by_name(claims['sub'])
+    if not user:
+        raise InvalidTokenError()
+
+    return user
