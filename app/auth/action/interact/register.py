@@ -1,10 +1,10 @@
-from auth.action.store.auth import IAuthUserRepository
 from auth.action.usecase.register import RegistrationUseCase
 from auth.dto.register import StoreRegisterUserDTO
 from auth.dto.register import ToRegisterUserDTO
 from auth.exception.register import InvalidPasswordConfirmError
 from auth.exception.register import UserAlreadyRegisteredError
 from auth.service.crypt import hash_password
+from auth.store.proto.auth import IAuthUserRepository
 
 
 class UserRegistrationInteractor(RegistrationUseCase):

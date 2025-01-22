@@ -1,7 +1,6 @@
 from typing import Protocol
 from typing import TypedDict
 
-from auth.action.store.auth import ILoginUserRepository
 from auth.action.usecase.login import UserLoginUseCase
 from auth.dto.login import AuthTokens
 from auth.dto.login import ToLoginUserDTO
@@ -9,6 +8,7 @@ from auth.exception.login import UnableRefreshTokens
 from auth.exception.login import UserNotFoundError
 from auth.exception.login import WrongUserPasswordError
 from auth.service.crypt import is_valid_pswrd
+from auth.store.proto.auth import ILoginUserRepository
 
 
 class Tokens(TypedDict):
