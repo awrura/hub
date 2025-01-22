@@ -3,7 +3,7 @@ from auth.store.proto.auth import IAuthUserRepository
 from auth.store.proto.auth import ILoginUserRepository
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.sql import select
-from user.model.entity.user import User
+from user.store.entity.user import User
 
 
 class AuthUserRepository(IAuthUserRepository, ILoginUserRepository):

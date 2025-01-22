@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio.engine import AsyncEngine
 from sqlalchemy.ext.asyncio.engine import create_async_engine
 from sqlalchemy.ext.asyncio.session import async_sessionmaker
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from user.model.entity.user import User
+from user.store.entity.user import User
 
 
 def get_connection_url(cfg: DatabaseConnectConfig) -> str:

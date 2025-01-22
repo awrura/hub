@@ -6,8 +6,8 @@ from dishka.integrations.fastapi import inject
 from fastapi import Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi.security import HTTPBearer
-from user.action.store.user import IUserRepository
 from user.domain.user import User
+from user.store.proto.user import IUserRepository
 
 auth_scheme = HTTPBearer()
 

@@ -1,8 +1,8 @@
 from dishka import provide
 from dishka import Provider
 from dishka import Scope
-from user.action.store.user import IUserRepository
-from user.model.repo.user import UserRepository
+from user.store.proto.user import IUserRepository
+from user.store.repo.user import UserRepository
 
 
 class UserRepoProvider(Provider):

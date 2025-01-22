@@ -6,7 +6,7 @@ from matrix.store.entity.matrix import Matrix
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm.base import Mapped
-from user.model.entity.user import User
+from user.store.entity.user import User
 
 
 class UserMatrix(Base):
