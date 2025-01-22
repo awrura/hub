@@ -1,8 +1,8 @@
 from typing import List
 
-from matrix.action.store.user_matrix import IUserMatrixRepository
 from matrix.action.usecase.user_matrix import UserMatrixUseCase
 from matrix.domain.matrix import Matrix
+from matrix.store.proto.user_matrix import IUserMatrixRepository
 from user.domain.user import User
 
 

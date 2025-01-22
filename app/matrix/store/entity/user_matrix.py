@@ -1,8 +1,8 @@
 from uuid import UUID
 from uuid import uuid4
 
-from matrix.model.entity.base import Base
-from matrix.model.entity.matrix import Matrix
+from matrix.store.entity.base import Base
+from matrix.store.entity.matrix import Matrix
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm.base import Mapped

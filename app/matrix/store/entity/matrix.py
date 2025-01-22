@@ -1,7 +1,7 @@
 from uuid import UUID
 from uuid import uuid4
 
-from matrix.model.entity.base import Base
+from matrix.store.entity.base import Base
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm.base import Mapped
 

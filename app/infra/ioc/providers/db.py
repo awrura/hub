@@ -4,8 +4,8 @@ from config.db import DatabaseConnectConfig
 from dishka.dependency_source.make_factory import provide  # type: ignore [reportUnknownVariableType]
 from dishka.entities.scope import Scope
 from dishka.provider import Provider
-from matrix.model.entity.matrix import Matrix
-from matrix.model.entity.user_matrix import UserMatrix
+from matrix.store.entity.matrix import Matrix
+from matrix.store.entity.user_matrix import UserMatrix
 from sqlalchemy.ext.asyncio.engine import AsyncEngine
 from sqlalchemy.ext.asyncio.engine import create_async_engine
 from sqlalchemy.ext.asyncio.session import async_sessionmaker
