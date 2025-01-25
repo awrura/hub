@@ -4,11 +4,13 @@ from config.db import DatabaseConnectConfig
 from dishka.dependency_source.make_factory import provide  # type: ignore [reportUnknownVariableType]
 from dishka.entities.scope import Scope
 from dishka.provider import Provider
+from matrix.store.entity.matrix import Matrix
+from matrix.store.entity.user_matrix import UserMatrix
 from sqlalchemy.ext.asyncio.engine import AsyncEngine
 from sqlalchemy.ext.asyncio.engine import create_async_engine
 from sqlalchemy.ext.asyncio.session import async_sessionmaker
 from sqlalchemy.ext.asyncio.session import AsyncSession
-from user.model.entity.user import User
+from user.store.entity.user import User
 
 
 def get_connection_url(cfg: DatabaseConnectConfig) -> str:
@@ -17,7 +19,9 @@ def get_connection_url(cfg: DatabaseConnectConfig) -> str:
 
 async def init_db(engine: AsyncEngine) -> None:
     async with engine.begin() as conn:
+        await conn.run_sync(Matrix.metadata.create_all)
         await conn.run_sync(User.metadata.create_all)
+        await conn.run_sync(UserMatrix.metadata.create_all)
 
 
 class SQLAlchemyProvider(Provider):

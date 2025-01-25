@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class TokenClaims(TypedDict):
-    username: str
+    sub: str
 
 
 class JwtTokenAuth(ITokenAuth):
@@ -26,8 +26,8 @@ class JwtTokenAuth(ITokenAuth):
             return jwt.decode(
                 token, self._conf.SECRET_KEY, algorithms=[self._conf.ALGORITHM]
             )
-        except PyJWTError:
-            logger.error('Unable to decode token')
+        except PyJWTError as e:
+            logger.error(f'Unable to decode token. {e}')
             return None
 
     def renew(self, refresh_token: str) -> Tokens | None:
