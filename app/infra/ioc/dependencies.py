@@ -35,15 +35,8 @@ def init_di(app: FastAPI) -> None:
         UserMatrixUseCaseProvider(),
         UserRepoProvider(),
         context={
-            DatabaseConnectConfig: DatabaseConnectConfig(
-                HOST='', PORT=1, USER='', PASS=''
-            ),
-            AuthTokenSettings: AuthTokenSettings(
-                SECRET_KEY='hello',
-                ALGORITHM='HS256',
-                ACCESS_TOKEN_EXPIRE_MINUTES=15,
-                REFRESH_TOKEN_EXPIRE_MINUTES=15,
-            ),
+            DatabaseConnectConfig: DatabaseConnectConfig(),  # pyright: ignore[reportCallIssue]
+            AuthTokenSettings: AuthTokenSettings(),  # pyright: ignore[reportCallIssue]
         },
     )
     setup_dishka(container, app)

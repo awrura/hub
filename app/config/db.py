@@ -1,8 +1,11 @@
-from pydantic import BaseModel
+from pydantic_settings import BaseSettings
 
 
-class DatabaseConnectConfig(BaseModel):
+class DatabaseConnectConfig(BaseSettings):
     HOST: str
     PORT: int
     USER: str
     PASS: str
+
+    class Config:
+        env_file = '../.env'
