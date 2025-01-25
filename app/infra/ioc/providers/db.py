@@ -31,7 +31,7 @@ class SQLAlchemyProvider(Provider):
         database_url = get_connection_url(settings)
         database_params = {}
         engine = create_async_engine(database_url, **database_params)
-        await init_db(engine)
+        # await init_db(engine)
         return engine
 
     @classmethod

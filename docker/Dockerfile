@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install netcat-traditional -y && apt-get autoremov
 
 WORKDIR /opt
 COPY ./docker/  /opt/docker/
-COPY ./pyproject.toml ./logging.yaml ./uv.lock* /opt/
+COPY ./pyproject.toml ./logging.yaml ./alembic.ini ./uv.lock* /opt/
 COPY ./app/  /opt/app/
 
 RUN uv sync --frozen
