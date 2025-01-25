@@ -13,7 +13,7 @@ from user.store.entity.user import User as UserBase
 config = context.config
 config.set_main_option(
     'sqlalchemy.url',
-    f'{get_connection_url(DatabaseConnectConfig())}?async_fallback=True',
+    f'{get_connection_url(DatabaseConnectConfig())}?async_fallback=True',  # pyright: ignore[reportCallIssue]
 )
 
 # Interpret the config file for Python logging.
