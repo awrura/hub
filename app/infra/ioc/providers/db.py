@@ -14,7 +14,7 @@ from user.store.entity.user import User
 
 
 def get_connection_url(cfg: DatabaseConnectConfig) -> str:
-    return 'sqlite+aiosqlite:///:memory:'
+    return f'postgresql+asyncpg://{cfg.USER}:{cfg.PASS}@{cfg.HOST}:{cfg.PORT}/{cfg.DB_NAME}'
 
 
 async def init_db(engine: AsyncEngine) -> None:

@@ -6,6 +6,7 @@ class DatabaseConnectConfig(BaseSettings):
     PORT: int
     USER: str
     PASS: str
+    DB_NAME: str
 
     class Config:
         env_file = '../.env'
