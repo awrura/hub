@@ -40,5 +40,5 @@ def setup_exception_handlers(app: FastAPI):
         UnableRefreshTokens, handler_factory(status.HTTP_400_BAD_REQUEST)
     )
     app.add_exception_handler(
-        InvalidTokenError, handler_factory(status.HTTP_401_FORBIDDEN)
+        InvalidTokenError, handler_factory(status.HTTP_401_UNAUTHORIZED)
     )
