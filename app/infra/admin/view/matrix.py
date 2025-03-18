@@ -3,4 +3,6 @@ from sqladmin import ModelView
 
 
 class MatrixAdminView(ModelView, model=Matrix):
-    column_list = [Matrix.uuid, Matrix.name]
+    column_list = [Matrix.name, Matrix.uuid]
+
+    can_export = False
