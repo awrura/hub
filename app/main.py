@@ -2,6 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 
 from auth.api.routes.auth import router as auth_router
+from config.auth import AdminAuthSettings
 from dishka.integrations.fastapi import inject
 from fastapi import FastAPI
 from infra.admin.admin import init_admin
@@ -15,7 +16,9 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 async def lifespan(app: FastAPI):
     container = app.state.dishka_container
     engine = await container.get(AsyncEngine)
-    await init_admin(app, engine)
+    admin_cfg = await container.get(AdminAuthSettings)
+
+    await init_admin(app, engine, admin_cfg)
     yield
 
 

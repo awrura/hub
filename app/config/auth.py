@@ -9,3 +9,13 @@ class AuthTokenSettings(BaseSettings):
 
     class Config:
         env_file = '../.env'
+
+
+class AdminAuthSettings(BaseSettings):
+    ADMIN_AUTH_SECRET: str
+    ADMIN_USERNAME: str
+    ADMIN_PASSWORD: str
+    TOKEN_SECRET: str
+
+    class Config:
+        env_file = '../.env'
