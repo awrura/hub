@@ -1,3 +1,4 @@
+from config.auth import AdminAuthSettings
 from config.auth import AuthTokenSettings
 from config.db import DatabaseConnectConfig
 from dishka.dependency_source import from_context
@@ -11,3 +12,7 @@ class DBConfigProvider(Provider):
 
 class AuthConfigProvider(Provider):
     config = from_context(provides=AuthTokenSettings, scope=Scope.APP)
+
+
+class AdminAuthConfigProvider(Provider):
+    config = from_context(provides=AdminAuthSettings, scope=Scope.APP)

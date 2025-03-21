@@ -1,3 +1,4 @@
+from config.auth import AdminAuthSettings
 from config.auth import AuthTokenSettings
 from config.db import DatabaseConnectConfig
 from dishka import make_async_container
@@ -37,6 +38,7 @@ def init_di(app: FastAPI) -> None:
         context={
             DatabaseConnectConfig: DatabaseConnectConfig(),  # pyright: ignore[reportCallIssue]
             AuthTokenSettings: AuthTokenSettings(),  # pyright: ignore[reportCallIssue]
+            AdminAuthSettings: AdminAuthSettings(),  # pyright: ignore[reportCallIssue]
         },
     )
     setup_dishka(container, app)
