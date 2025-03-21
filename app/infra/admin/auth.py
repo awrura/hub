@@ -4,6 +4,11 @@ from starlette.requests import Request
 
 
 class AdminAuth(AuthenticationBackend):
+    """
+    Сервис для аутентификации в админке
+    Креды администратора находятся в переменных окружения
+    """
+
     def __init__(self, cfg: AdminAuthSettings) -> None:
         super().__init__(cfg.ADMIN_AUTH_SECRET)
         self._cfg = cfg
