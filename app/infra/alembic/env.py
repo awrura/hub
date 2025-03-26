@@ -3,10 +3,15 @@ from logging.config import fileConfig
 from alembic import context
 from config.db import DatabaseConnectConfig
 from infra.ioc.providers.db import get_connection_url
-from matrix.store.entity.matrix import Base as MatrixBase
+from matrix.store.entity.base import Base as MatrixBase
+from matrix.store.entity.matrix import Matrix
+from matrix.store.entity.user_matrix import UserMatrix
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from user.store.entity.user import User as UserBase
+from user.store.entity.base import Base as UserBase
+from user.store.entity.user import User
+
+MODELS = [Matrix, UserMatrix, User]
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -25,10 +30,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = [
-    UserBase.metadata,
-    MatrixBase.metadata,
-]
+target_metadata = [MatrixBase.metadata, UserBase.metadata]
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
