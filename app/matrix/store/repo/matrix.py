@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from matrix.domain.matrix import Matrix as DomainMatrix
 from matrix.store.entity.matrix import Matrix
 from matrix.store.proto.matrix import IMatrixRepository
@@ -10,7 +12,12 @@ class MatrixRepository(IMatrixRepository):
         self._session = session
 
     async def get_matrix_by_secret(self, secret_key: str) -> DomainMatrix | None:
-        query = select(Matrix).where(Matrix.secret_key == secret_key)
+        try:
+            secret_uuid = UUID(secret_key)
+        except ValueError:
+            return None
+
+        query = select(Matrix).where(Matrix.secret_key == secret_uuid)
         matrix = await self._session.scalar(query)
         if not matrix:
             return None
