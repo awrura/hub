@@ -5,6 +5,7 @@ from dishka import FromDishka
 from dishka.integrations.fastapi import inject
 from fastapi import Depends
 from fastapi import status
+from fastapi.responses import JSONResponse
 from fastapi.responses import Response
 from fastapi.routing import APIRouter
 from matrix.action.usecase.secret_key import UserMatrixSecretkeyUseCase
@@ -36,7 +37,10 @@ async def add_user_matrix(
     interactor: FromDishka[UserMatrixSecretkeyUseCase],
     user: User = Depends(user_from_token),
 ):
-    sucsess = await interactor.add_matrix_to_user(user, secret)
-    if sucsess:
-        return Response(status_code=status.HTTP_201_CREATED)
-    return Response(status_code=status.HTTP_400_BAD_REQUEST)
+    try:
+        await interactor.add_matrix_to_user(user, secret)
+    except ValueError as ex:
+        return JSONResponse(
+            content={'error': str(ex)}, status_code=status.HTTP_400_BAD_REQUEST
+        )
+    return Response(status_code=status.HTTP_201_CREATED)
