@@ -13,3 +13,4 @@ class Matrix(Base):
     name: Mapped[str] = mapped_column(unique=True)
     height: Mapped[int]
     width: Mapped[int]
+    secret_key: Mapped[UUID] = mapped_column(default=uuid4)
