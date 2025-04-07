@@ -10,6 +10,7 @@ from fastapi.responses import Response
 from fastapi.routing import APIRouter
 from matrix.action.usecase.secret_key import UserMatrixSecretkeyUseCase
 from matrix.action.usecase.user_matrix import UserMatrixUseCase
+from matrix.api.schema.secret_err import AddMatrixBySecretError
 from matrix.api.schema.user_matrix import UserMatrixOutSchema
 from user.domain.user import User
 
@@ -30,7 +31,13 @@ async def my_matrix(
     ]
 
 
-@router.post('/add/{secret}')
+@router.post(
+    '/add/{secret}',
+    responses={
+        status.HTTP_201_CREATED: {'model': None},
+        status.HTTP_400_BAD_REQUEST: {'model': AddMatrixBySecretError},
+    },
+)
 @inject
 async def add_user_matrix(
     secret: str,
